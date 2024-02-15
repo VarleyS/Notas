@@ -1,0 +1,47 @@
+body {
+    background-image: url("/src/img/img-fundo.jpg");
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.login-container {
+    /* Set container width */
+    width: 300px;
+    /* Center container on page */
+    margin: 100px auto;
+    /* Set container background color */
+    background-color: #fff;
+    /* Add padding around container */
+    padding: 70px;
+    /* Set container border radius */
+    border-radius: 5px;
+    /* Add box shadow to container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    font-size: 24px;
+}
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+a {
+    text-decoration: none;
+    color: #007bff;
+}
