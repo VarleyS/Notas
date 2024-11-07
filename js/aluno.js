@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const alunosListElement = document.getElementById('alunosList');
 
     // Realiza uma requisição GET para a API
-    fetch('https://localhost:7262/Aluno')
+    fetch('https://localhost:44346/Aluno')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro na requisição');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             // Trata erros
             console.error('Erro:', error);
-            alunosListElement.innerHTML = 'Erro ao obter lista de alunos.';
+            alunosListElement.innerHTML = '<tr><td colspan="6">Erro ao obter lista de alunos.</td></tr>';
         });
 
     // Função para exibir os alunos na página
@@ -24,15 +24,16 @@ document.addEventListener('DOMContentLoaded', function () {
         alunosListElement.innerHTML = '';
 
         alunos.forEach(aluno => {
-            const li = document.createElement('li');
-            li.textContent = `${aluno.id}: 
-            ${aluno.name} - 
-            ${aluno.dataNascimento} - 
-            ${aluno.cpf} - 
-            ${aluno.rg} - 
-            ${aluno.sexo} - 
-            ${aluno.telefone}`;
-            alunosListElement.appendChild(li);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${aluno.name}</td>
+                <td>${aluno.dataNascimento}</td>
+                <td>${aluno.cpf}</td>
+                <td>${aluno.rg}</td>
+                <td>${aluno.sexo}</td>
+                <td>${aluno.telefone}</td>
+            `;
+            alunosListElement.appendChild(row);
         });
     }
 });

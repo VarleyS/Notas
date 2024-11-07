@@ -1,31 +1,42 @@
-import axios from 'https://cdn.jsdelivr.net/npm/axios@1.3.5/+esm';
+/*const formulario = document.getElementById('formularioAluno');
 
-async function postAluno(){
-    try {
-        const formulario = document.getElementById('formularioAluno');
-        const dados = {
-                name: formulario.name.value, 
-                dataNascimento: formulario.dataNascimento.value,
-                cpf: formulario.cpf.value,
-                rg: formulario.rg.value,
-                sexo: formulerio.sexo.value,
-                telefone: formulario.telefone.value
-            };
-            
-            await axios.post("http://localhost:8082/alunos",dados)
-                      .then(function (response){
-                          console.log(response);
-                           window.location.href="index.html";
-                       })
-        
-    } catch (error) {
-        alert ("Erro ao enviar os dados");
-        console.log(erro);
+const dados = new FormData(formulario);
+
+const xhr = new XMLHttpRequest();
+
+xhr.open('POST', 'https://localhost:7262/aluno', true);
+
+xhr.setRequestHeader('Content-Type', 'application/json');
+
+xhr.onreadystatechange = () => {
+    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+        console.log(xhr.responseText);
     }
+};
+
+const dadosJson = {};
+dados.forEach((value, key) => {
+    dadosJson[key] = value;
+});
+xhr.send(JSON.stringify(dadosJson));
+*/
+
+//---------------------------------------------------------------------------
+
+const formulario = document.getElementById('formularioAluno');
+const formData = new FormData(formulario);
+
+// Convert the FormData object to a JSON object
+const dadosJson = {};
+for (let [key, value] of formData.entries()) {
+    dadosJson[key] = value;
 }
-   /*     const resposta = await axios.post('https://localhost:7262/aluno', dados);  
-        console.log("Dados do aluno salvo com sucesso!", resposta.data);
-    } catch (error) {
-        console.log("Erro na requisição POST: ", error);
-    }
-}*/
+
+// Send the request using Axios
+axios.post('https://localhost:44346/Aluno', dadosJson)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });

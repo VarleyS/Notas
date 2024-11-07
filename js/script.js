@@ -1,25 +1,39 @@
 const loginButton = document.getElementById("login");
-        loginButton.addEventListener("click", () => {
-            const email = document.getElementById("email").value;
-            const senha = document.getElementById("senha").value;
-            // Aqui você pode adicionar a lógica de autenticação
-            // Para este exemplo, apenas exibiremos as credenciais inseridas no console.
-            const user = users.find(user => user.email === email && user.senha === senha);
 
-            if(user){
-                alert(`Bem vindo ao sistema!`);
-            }else {
-                alert("Credenciais inválidas. Tente novamente.");
+loginButton.addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    // Realiza uma requisição GET para a API
+    fetch('https://localhost:44346/Usuario')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
             }
-
-            console.log("E-mail: " + email);
-            console.log("Senha: " + senha);
+            return response.json();
+        })
+        .then(usuarios => {
+            // Valida as credenciais dos usuários
+            validaUsuarios(usuarios, email, senha);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            document.getElementById('usuariosListElement').innerHTML = 'Erro ao obter lista de usuários.';
         });
+});
 
-        const users = [
-            { email: "varleysr@gmail.com", senha: "senha123" },
-            { email: "outro@email.com", senha: "outrasenha" }
-        ];
+// Função para validar os usuários e credenciais
+function validaUsuarios(usuarios, email, senha) {
+    const usuarioEncontrado = usuarios.find(usuario => usuario.email === email && usuario.password === senha);
+
+    if (usuarioEncontrado) {
+        alert(`Bem-vindo ao sistema, ${usuarioEncontrado.name}!`);
+
+
+    } else {
+        alert("Credenciais inválidas. Tente novamente.");
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const registrationForm = document.getElementById("registro-form");
@@ -31,16 +45,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("email").value;
         const senha = document.getElementById("senha").value;
 
-        if(name && email && senha) {
+        if (name && email && senha) {
             const userData = {
                 name: name,
                 email: email,
                 senha: senha
             };
 
-            if(userData)
-                alert("Dados do usuário registrado:", userData);
+            // Exibe os dados do usuário registrado
+            alert(`Dados do usuário registrado: ${JSON.stringify(userData)}`);
 
+            // Redireciona para a página de login
             window.location.href = "index.html";
         } else {
             alert('Preencha todos os campos');
