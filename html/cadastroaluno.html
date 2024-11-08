@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Aluno</title>
     <link rel="stylesheet" href="/src/css/cadastroaluno.css">
 </head>
+
 <body>
+    <!-- Barra de navegação -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aluno.html">Listagem de Alunos</a></li>
+            <li><a href="cadastroaluno.html">Registrar Aluno</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <form id="formularioAluno">
             <h1>Cadastro de Aluno</h1>
@@ -18,7 +30,7 @@
             <input type="text" name="rg" placeholder="RG" required>
             <input type="text" name="sexo" placeholder="SEXO" required>
 
-            
+
             <input type="text" name="telefone" placeholder="TELEFONE" required>
 
             <button type="submit" onclick="postAluno()">Cadastrar</button>
@@ -27,4 +39,5 @@
     <script type="module" src="/src/js/cadastroAluno.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
+
 </html>

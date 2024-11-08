@@ -28,7 +28,7 @@ function validaUsuarios(usuarios, email, senha) {
 
     if (usuarioEncontrado) {
         alert(`Bem-vindo ao sistema, ${usuarioEncontrado.name}!`);
-
+        window.location.href = 'home.html';
 
     } else {
         alert("Credenciais inválidas. Tente novamente.");
